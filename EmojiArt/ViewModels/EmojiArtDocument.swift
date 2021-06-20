@@ -18,11 +18,12 @@ class EmojiArtDocument: ObservableObject {
     
     @Published var backgroundImage: UIImage?
     @Published var backgroundStatus = BackgroundStatus.idle
+    @Published private(set) var selectedEmojis: Set<EmojiArtModel.Emoji> = []
     
     init() {
         emojiArt = EmojiArtModel()
-        emojiArt.addEmoji("😅", at: Point(x: -200, y: -100), size: 80)
-        emojiArt.addEmoji("🏀", at: Point(x: 200, y: 100), size: 40)
+        //emojiArt.addEmoji("😅", at: Point(x: -200, y: -100), size: 80)
+        //emojiArt.addEmoji("🏀", at: Point(x: 200, y: 100), size: 40)
     }
     
     var emojis: [EmojiArtModel.Emoji] {
@@ -81,5 +82,22 @@ class EmojiArtDocument: ObservableObject {
             emojiArt.emojis[index].size = Int((CGFloat(emojiArt.emojis[index].size) * scale)
                                                 .rounded(.toNearestOrAwayFromZero))
         }
+    }
+    
+    func selectEmoji(_ emoji: EmojiArtModel.Emoji) {
+        if isEmojiSelected(emoji) {
+            selectedEmojis.remove(emoji)
+        }
+        else {
+            selectedEmojis.insert(emoji)
+        }
+    }
+    
+    func isEmojiSelected(_ emoji: EmojiArtModel.Emoji) -> Bool {
+        selectedEmojis.contains(emoji)
+    }
+    
+    func unselectAll() {
+        selectedEmojis = []
     }
 }

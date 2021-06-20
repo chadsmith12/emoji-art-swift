@@ -37,17 +37,21 @@ struct DocumentBody: View {
                 }
                 else {
                     ForEach(document.emojis) { emoji in
-                        Text(emoji.text)
+                        DocumentEmojiView(content: emoji.text, isSelected: document.isEmojiSelected(emoji))
                             .font(.system(size: fontSize(for: emoji)))
                             .scaleEffect(zoomScale)
                             .position(position(for: emoji, in: geometry))
+                            .onTapGesture {
+                                document.selectEmoji(emoji)
+                            }
                     }
                 }
-            }
+            }   
             .clipped()
             .onDrop(of: [.plainText, .url, .image], isTargeted: nil) { providers, location in
                 return onDropItems(providers: providers, at: location, in: geometry)
             }
+            .onTapGesture(perform: document.unselectAll)
             .gesture(panGesture().simultaneously(with: zoomGesture()))
         }
     }
