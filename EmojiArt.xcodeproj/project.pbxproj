@@ -20,6 +20,8 @@
 		C7EE4369267C5EDC000B44DE /* DocumentBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE4368267C5EDC000B44DE /* DocumentBody.swift */; };
 		C7EE436B267C66F0000B44DE /* PointExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE436A267C66F0000B44DE /* PointExtensions.swift */; };
 		C7EE436D267D8EDF000B44DE /* NSItemProviderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE436C267D8EDF000B44DE /* NSItemProviderExtensions.swift */; };
+		C7EE436F267EBA81000B44DE /* OptionalImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE436E267EBA81000B44DE /* OptionalImage.swift */; };
+		C7EE4371267EC3BF000B44DE /* EmojiArtDocument.BackgroundStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE4370267EC3BF000B44DE /* EmojiArtDocument.BackgroundStatus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		C7EE4368267C5EDC000B44DE /* DocumentBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentBody.swift; sourceTree = "<group>"; };
 		C7EE436A267C66F0000B44DE /* PointExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointExtensions.swift; sourceTree = "<group>"; };
 		C7EE436C267D8EDF000B44DE /* NSItemProviderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSItemProviderExtensions.swift; sourceTree = "<group>"; };
+		C7EE436E267EBA81000B44DE /* OptionalImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalImage.swift; sourceTree = "<group>"; };
+		C7EE4370267EC3BF000B44DE /* EmojiArtDocument.BackgroundStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtDocument.BackgroundStatus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				C7EE4360267C5526000B44DE /* EmojiArtDocument.swift */,
+				C7EE4370267EC3BF000B44DE /* EmojiArtDocument.BackgroundStatus.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -124,6 +129,7 @@
 			children = (
 				C7EE4366267C5CF0000B44DE /* ScrollingEmojisView.swift */,
 				C7EE4368267C5EDC000B44DE /* DocumentBody.swift */,
+				C7EE436E267EBA81000B44DE /* OptionalImage.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -200,6 +206,8 @@
 				C7EE436D267D8EDF000B44DE /* NSItemProviderExtensions.swift in Sources */,
 				C7EE435C267C4EBE000B44DE /* Point.swift in Sources */,
 				C7EE4369267C5EDC000B44DE /* DocumentBody.swift in Sources */,
+				C7EE4371267EC3BF000B44DE /* EmojiArtDocument.BackgroundStatus.swift in Sources */,
+				C7EE436F267EBA81000B44DE /* OptionalImage.swift in Sources */,
 				C7EE4361267C5526000B44DE /* EmojiArtDocument.swift in Sources */,
 				C7EE434C267C4DC3000B44DE /* EmojiArtDocumentView.swift in Sources */,
 				C7EE436B267C66F0000B44DE /* PointExtensions.swift in Sources */,
