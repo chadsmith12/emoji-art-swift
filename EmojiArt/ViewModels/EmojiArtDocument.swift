@@ -10,6 +10,7 @@ import SwiftUI
 class EmojiArtDocument: ObservableObject {
     @Published private(set) var emojiArt: EmojiArtModel {
         didSet {
+            scheduleAutoSave()
             if emojiArt.background != oldValue.background  {
                 fetchBackground()
             }
@@ -19,11 +20,17 @@ class EmojiArtDocument: ObservableObject {
     @Published var backgroundImage: UIImage?
     @Published var backgroundStatus = BackgroundStatus.idle
     @Published private(set) var selectedEmojis: Set<EmojiArtModel.Emoji> = []
+    private var autoSaveTimer: Timer?
     
     init() {
-        emojiArt = EmojiArtModel()
-        //emojiArt.addEmoji("😅", at: Point(x: -200, y: -100), size: 80)
-        //emojiArt.addEmoji("🏀", at: Point(x: 200, y: 100), size: 40)
+        if let url = AutoSave.url, let autoSavedEmojiArt = try? EmojiArtModel(url: url) {
+            emojiArt = autoSavedEmojiArt
+            fetchBackground()
+        } else {
+            emojiArt = EmojiArtModel()
+            //emojiArt.addEmoji("😅", at: Point(x: -200, y: -100), size: 80)
+            //emojiArt.addEmoji("🏀", at: Point(x: 200, y: 100), size: 40)
+        }
     }
     
     var emojis: [EmojiArtModel.Emoji] {
@@ -76,7 +83,7 @@ class EmojiArtDocument: ObservableObject {
             emojiArt.emojis[index].location.y += Int(offset.height)
         }
     }
-    
+        
     func scaleEmoji(_ emoji: EmojiArtModel.Emoji, by scale: CGFloat) {
         if let index = emojiArt.emojis.index(matching: emoji) {
             emojiArt.emojis[index].size = Int((CGFloat(emojiArt.emojis[index].size) * scale)
@@ -99,5 +106,41 @@ class EmojiArtDocument: ObservableObject {
     
     func unselectAll() {
         selectedEmojis = []
+    }
+    
+    private func autosave() {
+        if let url = AutoSave.url {
+            save(to: url)
+        }
+    }
+    
+    private func scheduleAutoSave() {
+        autoSaveTimer?.invalidate()
+        autoSaveTimer = Timer.scheduledTimer(withTimeInterval: AutoSave.interval, repeats: false) { _ in
+            self.autosave()
+        }
+    }
+    
+    private func save(to url: URL) {
+        let thisFunction = "\(String(describing: self)).\(#function)"
+        do {
+            let data = try emojiArt.json()
+            print("\(thisFunction) json = \(String(data: data, encoding: .utf8) ?? "nil")")
+            try data.write(to: url)
+        } catch let encodingError where encodingError is EncodingError {
+            print("\(thisFunction) failed to encode with error: \(encodingError.localizedDescription)")
+        } catch {
+            print("\(thisFunction) error: \(error)")
+        }
+    }
+    
+    private struct AutoSave {
+        static let filename = "AutoSaved.emojiart"
+        static var url: URL? {
+            let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+            
+            return documentDirectory?.appendingPathComponent(filename)
+        }
+        static let interval: TimeInterval = 5
     }
 }

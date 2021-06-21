@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Point: Hashable, Equatable {
+struct Point: Hashable, Equatable, Codable {
     var x: Int
     var y: Int
 }

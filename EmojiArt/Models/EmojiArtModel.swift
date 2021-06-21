@@ -7,13 +7,22 @@
 
 import Foundation
 
-struct EmojiArtModel {
+struct EmojiArtModel: Codable {
     private var currentEmojiId = 0
     var background: Background = .blank
     var emojis = [Emoji]()
     
     init() {
         // blank to keep people from thinking they can init this document and set the emojis
+    }
+    
+    init(json: Data) throws {
+        self = try JSONDecoder().decode(EmojiArtModel.self, from: json)
+    }
+    
+    init(url: URL) throws {
+        let data = try Data(contentsOf: url)
+        self = try EmojiArtModel(json: data)
     }
     
     /**
@@ -24,7 +33,15 @@ struct EmojiArtModel {
         emojis.append(Emoji(text: text, location: location, size: size, id: currentEmojiId))
     }
     
-    struct Emoji: Identifiable, Hashable {
+    
+    /// Gets the data encoded as a JSON
+    /// - Throws: throws if the JSONEncoder fails
+    /// - Returns: The Data encoded as JSON
+    func json() throws -> Data {
+        return try JSONEncoder().encode(self)
+    }
+    
+    struct Emoji: Identifiable, Hashable, Codable {
         static let defaultEmojiSize = 40
         
         let text: String
