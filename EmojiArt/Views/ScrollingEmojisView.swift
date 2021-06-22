@@ -9,11 +9,14 @@ import SwiftUI
 
 struct ScrollingEmojisView: View {
     let emojis: String
+    var emojisDuplicatedRemoved: String {
+        emojis.removingDuplicateCharacters
+    }
     
     var body: some View {
         ScrollView(.horizontal) {
             HStack {
-                ForEach(emojis.map { String($0) }, id: \.self) { emoji in
+                ForEach(emojisDuplicatedRemoved.map { String($0) }, id: \.self) { emoji in
                     Text(emoji)
                         .onDrag {
                             return getItemProvider(for: emoji)

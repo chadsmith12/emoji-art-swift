@@ -14,8 +14,7 @@ struct EmojiArtDocumentView: View {
     var body: some View {
         VStack(spacing: 0) {
             DocumentBody(document: document)
-            ScrollingEmojisView(emojis: testEmojis)
-                .font(.system(size: CGFloat(EmojiArtModel.Emoji.defaultEmojiSize)))
+            PalletChooser()
         }
     }
 }
