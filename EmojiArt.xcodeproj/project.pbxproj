@@ -28,6 +28,8 @@
 		C7EE437A26818F4E000B44DE /* DefaultPallets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE437926818F4E000B44DE /* DefaultPallets.swift */; };
 		C7EE437C2681A95D000B44DE /* PalletChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE437B2681A95D000B44DE /* PalletChooser.swift */; };
 		C7EE437F2681B1E8000B44DE /* RollTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE437E2681B1E8000B44DE /* RollTransition.swift */; };
+		C7EE43812682E831000B44DE /* AnimatedActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE43802682E831000B44DE /* AnimatedActionButton.swift */; };
+		C7EE43832682EDAC000B44DE /* PalletEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE43822682EDAC000B44DE /* PalletEditor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		C7EE437926818F4E000B44DE /* DefaultPallets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPallets.swift; sourceTree = "<group>"; };
 		C7EE437B2681A95D000B44DE /* PalletChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalletChooser.swift; sourceTree = "<group>"; };
 		C7EE437E2681B1E8000B44DE /* RollTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollTransition.swift; sourceTree = "<group>"; };
+		C7EE43802682E831000B44DE /* AnimatedActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedActionButton.swift; sourceTree = "<group>"; };
+		C7EE43822682EDAC000B44DE /* PalletEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalletEditor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,8 @@
 				C7EE436E267EBA81000B44DE /* OptionalImage.swift */,
 				C7EE4372267EF079000B44DE /* DocumentEmojiView.swift */,
 				C7EE437B2681A95D000B44DE /* PalletChooser.swift */,
+				C7EE43802682E831000B44DE /* AnimatedActionButton.swift */,
+				C7EE43822682EDAC000B44DE /* PalletEditor.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -247,6 +253,7 @@
 				C7EE437F2681B1E8000B44DE /* RollTransition.swift in Sources */,
 				C7EE437C2681A95D000B44DE /* PalletChooser.swift in Sources */,
 				C7EE4361267C5526000B44DE /* EmojiArtDocument.swift in Sources */,
+				C7EE43812682E831000B44DE /* AnimatedActionButton.swift in Sources */,
 				C7EE434C267C4DC3000B44DE /* EmojiArtDocumentView.swift in Sources */,
 				C7EE437726818ABC000B44DE /* Pallet.swift in Sources */,
 				C7EE436B267C66F0000B44DE /* PointExtensions.swift in Sources */,
@@ -255,6 +262,7 @@
 				C7EE437A26818F4E000B44DE /* DefaultPallets.swift in Sources */,
 				C7EE435E267C52B3000B44DE /* EmojiArtModel.Background.swift in Sources */,
 				C7EE434A267C4DC3000B44DE /* EmojiArtApp.swift in Sources */,
+				C7EE43832682EDAC000B44DE /* PalletEditor.swift in Sources */,
 				C7EE435A267C4E10000B44DE /* EmojiArtModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

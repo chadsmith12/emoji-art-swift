@@ -10,6 +10,7 @@ import SwiftUI
 struct PalletChooser: View {
     @EnvironmentObject var store: PalletStore
     @State private var choenPaletteIndex = 0
+    @State private var editing = false
     var emojiFrontSize = CGFloat(EmojiArtModel.Emoji.defaultEmojiSize)
     var emojiFont: Font {
         .system(size: emojiFrontSize)
@@ -26,6 +27,9 @@ struct PalletChooser: View {
             }
             .id(pallet.id)
             .transition(RollTransition(insertionOffset: (x: 0, y: emojiFrontSize), removalOffset: (x: 0, y: -emojiFrontSize)).transition)
+            .popover(isPresented: $editing) {
+                PalletEditor(pallet: $store.pallets[choenPaletteIndex])
+            }
         }
         .clipped()
     }
@@ -35,6 +39,38 @@ struct PalletChooser: View {
             Image(systemName: "paintpalette")
         }
         .font(emojiFont)
+        .contextMenu {
+            contextMenu
+        }
+    }
+    
+    @ViewBuilder
+    var contextMenu: some View {
+        AnimatedActionButton(title: "Edit", systemImage: "pencil") {
+            editing = true
+        }
+        AnimatedActionButton(title: "New", systemImage: "plus") {
+            store.insertPallet(named: "New", emojis: "", at: choenPaletteIndex)
+            editing = true
+        }
+        AnimatedActionButton(title: "Delete", systemImage: "minus.circle") {
+            choenPaletteIndex = store.removePallet(at: choenPaletteIndex)
+        }
+        gotoMenu
+    }
+    
+    var gotoMenu: some View {
+        Menu {
+            ForEach(store.pallets) { pallet in
+                AnimatedActionButton(title: pallet.name) {
+                    if let index = store.pallets.index(matching: pallet) {
+                        self.choenPaletteIndex = index
+                    }
+                }
+            }
+        } label: {
+            Label("Go To", systemImage: "text.insert")
+        }
     }
     
     private func cyclePalettes() {
