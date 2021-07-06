@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 class EmojiArtDocument: ObservableObject {
     @Published private(set) var emojiArt: EmojiArtModel {
@@ -21,6 +22,7 @@ class EmojiArtDocument: ObservableObject {
     @Published var backgroundStatus = BackgroundStatus.idle
     @Published private(set) var selectedEmojis: Set<EmojiArtModel.Emoji> = []
     private var autoSaveTimer: Timer?
+    private var backgroundCancellable: AnyCancellable?
     
     init() {
         if let url = AutoSave.url, let autoSavedEmojiArt = try? EmojiArtModel(url: url) {
@@ -48,19 +50,34 @@ class EmojiArtDocument: ObservableObject {
             // go and download the image in the background
             // once done, update the image on the main UI thread
             backgroundStatus =  .fetching
-            DispatchQueue.global(qos: .userInitiated).async {
-                let imageData = try? Data(contentsOf: url)
-                DispatchQueue.main.async { [weak self] in
-                    // did we load the same background?
-                    // we don't want to accidently load something that too long and is old
-                    if self?.background == EmojiArtModel.Background.url(url) {
-                        self?.backgroundStatus = .idle
-                        if imageData != nil {
-                            self?.backgroundImage = UIImage(data: imageData!)
-                        }
-                    }
+            let session = URLSession.shared
+            let publisher = session.dataTaskPublisher(for: url)
+                .map{(data, urlResponse) in UIImage(data: data)}
+                .replaceError(with: nil)
+                .receive(on: DispatchQueue.main)
+            
+            backgroundCancellable = publisher
+                .sink { [weak self] image in
+                    self?.backgroundImage = image
+                    self?.backgroundStatus = (image != nil) ? .idle : .failed(url)
                 }
-            }
+            
+//            DispatchQueue.global(qos: .userInitiated).async {
+//                let imageData = try? Data(contentsOf: url)
+//                DispatchQueue.main.async { [weak self] in
+//                    // did we load the same background?
+//                    // we don't want to accidently load something that too long and is old
+//                    if self?.background == EmojiArtModel.Background.url(url) {
+//                        self?.backgroundStatus = .idle
+//                        if imageData != nil {
+//                            self?.backgroundImage = UIImage(data: imageData!)
+//                        }
+//                        if self?.backgroundImage == nil {
+//                            self?.backgroundStatus = .failed(url)
+//                        }
+//                    }
+//                }
+//            }
         case .imageData(let data):
             backgroundImage = UIImage(data: data)
         case .blank:

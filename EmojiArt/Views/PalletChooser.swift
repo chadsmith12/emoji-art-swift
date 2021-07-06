@@ -10,7 +10,9 @@ import SwiftUI
 struct PalletChooser: View {
     @EnvironmentObject var store: PalletStore
     @State private var choenPaletteIndex = 0
-    @State private var editing = false
+    @State private var palletToEdit: Pallet?
+    @State private var managing = false
+    
     var emojiFrontSize = CGFloat(EmojiArtModel.Emoji.defaultEmojiSize)
     var emojiFont: Font {
         .system(size: emojiFrontSize)
@@ -27,8 +29,11 @@ struct PalletChooser: View {
             }
             .id(pallet.id)
             .transition(RollTransition(insertionOffset: (x: 0, y: emojiFrontSize), removalOffset: (x: 0, y: -emojiFrontSize)).transition)
-            .popover(isPresented: $editing) {
-                PalletEditor(pallet: $store.pallets[choenPaletteIndex])
+            .popover(item: $palletToEdit) { pallet in
+                PalletEditor(pallet: $store.pallets[pallet])
+            }
+            .sheet(isPresented: $managing) {
+                PalletManager()
             }
         }
         .clipped()
@@ -47,14 +52,17 @@ struct PalletChooser: View {
     @ViewBuilder
     var contextMenu: some View {
         AnimatedActionButton(title: "Edit", systemImage: "pencil") {
-            editing = true
+            palletToEdit = store.getPallet(at: choenPaletteIndex)
         }
         AnimatedActionButton(title: "New", systemImage: "plus") {
             store.insertPallet(named: "New", emojis: "", at: choenPaletteIndex)
-            editing = true
+            palletToEdit = store.getPallet(at: choenPaletteIndex)
         }
         AnimatedActionButton(title: "Delete", systemImage: "minus.circle") {
             choenPaletteIndex = store.removePallet(at: choenPaletteIndex)
+        }
+        AnimatedActionButton(title: "Manager", systemImage: "slider.vertical.3") {
+            managing = true
         }
         gotoMenu
     }

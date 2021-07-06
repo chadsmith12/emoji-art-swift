@@ -12,6 +12,10 @@ struct PalletEditor: View {
     @State private var newEmojis: String = ""
     @State private var emojisAdded: String = ""
     
+    private var distinctEmojis: [String] {
+        return pallet.emojis.removingDuplicateCharacters.map {String($0)}
+    }
+    
     var body: some View {
         Form {
             Section(header: Text("Name")) {
@@ -21,12 +25,22 @@ struct PalletEditor: View {
                 TextField("", text: $newEmojis)
                     .onChange(of: newEmojis, perform: addEmojis)
             }
+            Section(header: Text("Remove Emojis")) {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 40))]) {
+                    ForEach(distinctEmojis, id: \.self) { emoji in
+                        Text(emoji)
+                            .onTapGesture {
+                                removeEmoji(emoji)
+                            }
+                    }
+                }
+            }
         }
         .frame(minWidth: 300, minHeight: 350)
+        .navigationTitle("Edit \(pallet.name)")
     }
     
     private func addEmojis(_ emojis: String) {
-        print(pallet.emojis)
         withAnimation {
             // go through all emojis, if no longer included remove it
             for currentEmoji in pallet.emojis {
@@ -41,6 +55,12 @@ struct PalletEditor: View {
                 .filter { $0.isEmoji }
                 .removingDuplicateCharacters
             emojisAdded.append(emojis)
+        }
+    }
+    
+    private func removeEmoji(_ emoji: String) {
+        withAnimation {
+            pallet.emojis.removeAll(where: {String($0) == emoji})
         }
     }
 }

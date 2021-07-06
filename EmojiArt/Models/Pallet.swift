@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Pallet: Identifiable, Codable {
+struct Pallet: Identifiable, Codable, Hashable {
     var name: String
     var emojis: String
     var id: Int

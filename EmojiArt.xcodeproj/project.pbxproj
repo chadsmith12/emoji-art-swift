@@ -30,6 +30,8 @@
 		C7EE437F2681B1E8000B44DE /* RollTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE437E2681B1E8000B44DE /* RollTransition.swift */; };
 		C7EE43812682E831000B44DE /* AnimatedActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE43802682E831000B44DE /* AnimatedActionButton.swift */; };
 		C7EE43832682EDAC000B44DE /* PalletEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE43822682EDAC000B44DE /* PalletEditor.swift */; };
+		C7EE438526844023000B44DE /* PalletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE438426844023000B44DE /* PalletManager.swift */; };
+		C7EE438726858C92000B44DE /* IdentifiableAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE438626858C92000B44DE /* IdentifiableAlert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		C7EE437E2681B1E8000B44DE /* RollTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollTransition.swift; sourceTree = "<group>"; };
 		C7EE43802682E831000B44DE /* AnimatedActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedActionButton.swift; sourceTree = "<group>"; };
 		C7EE43822682EDAC000B44DE /* PalletEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalletEditor.swift; sourceTree = "<group>"; };
+		C7EE438426844023000B44DE /* PalletManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PalletManager.swift; sourceTree = "<group>"; };
+		C7EE438626858C92000B44DE /* IdentifiableAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableAlert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +158,8 @@
 				C7EE437B2681A95D000B44DE /* PalletChooser.swift */,
 				C7EE43802682E831000B44DE /* AnimatedActionButton.swift */,
 				C7EE43822682EDAC000B44DE /* PalletEditor.swift */,
+				C7EE438426844023000B44DE /* PalletManager.swift */,
+				C7EE438626858C92000B44DE /* IdentifiableAlert.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -258,6 +264,8 @@
 				C7EE437726818ABC000B44DE /* Pallet.swift in Sources */,
 				C7EE436B267C66F0000B44DE /* PointExtensions.swift in Sources */,
 				C7EE4367267C5CF0000B44DE /* ScrollingEmojisView.swift in Sources */,
+				C7EE438526844023000B44DE /* PalletManager.swift in Sources */,
+				C7EE438726858C92000B44DE /* IdentifiableAlert.swift in Sources */,
 				C7EE4364267C57C9000B44DE /* UtilityExtensions.swift in Sources */,
 				C7EE437A26818F4E000B44DE /* DefaultPallets.swift in Sources */,
 				C7EE435E267C52B3000B44DE /* EmojiArtModel.Background.swift in Sources */,

@@ -8,8 +8,9 @@
 import Foundation
 
 extension EmojiArtDocument {
-    enum BackgroundStatus {
+    enum BackgroundStatus: Equatable {
         case idle
         case fetching
+        case failed(URL)
     }
 }
