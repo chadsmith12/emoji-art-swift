@@ -14,6 +14,7 @@ struct DocumentBody: View {
     @State private var alertToShow: IdentifiableAlert?
     @GestureState private var gestureZoomScale: CGFloat = 1
     @GestureState private var gesturePanOffset = CGSize.zero
+    @GestureState private var gestureEmojiOffset = CGSize.zero
     
     private var zoomScale: CGFloat {
         steadyStateZoomScale * gestureZoomScale
@@ -45,6 +46,7 @@ struct DocumentBody: View {
                             .onTapGesture {
                                 document.selectEmoji(emoji)
                             }
+                            .gesture(self.dragEmojis(for: emoji))
                     }
                 }
             }   
@@ -63,6 +65,9 @@ struct DocumentBody: View {
                     showBackgroundStatusFailedAlert(url)
                 default: break
                 }
+            }
+            .onReceive(document.$backgroundImage) { image in
+                zoomToFit(image: image, in: geometry.size)
             }
         }
     }
@@ -143,6 +148,25 @@ struct DocumentBody: View {
             }
             .onEnded { finalDragGestureVale in
                 steadyStatePanOffset = steadyStatePanOffset + (finalDragGestureVale.translation / zoomScale)
+            }
+    }
+    
+    private func dragEmojis(for emoji: EmojiArtModel.Emoji) -> some Gesture {
+        let isSelected = document.isEmojiSelected(emoji)
+        
+        return DragGesture()
+            .updating($gestureEmojiOffset) { latestDragGestureValue, gestureEmojiOffset, transaction in
+                gestureEmojiOffset = latestDragGestureValue.translation / self.zoomScale
+            }
+            .onEnded { finalDragGestureValue in
+                let distanceDragged = finalDragGestureValue.translation / self.zoomScale
+                if isSelected  {
+                    for emoji in document.selectedEmojis {
+                        self.document.moveEmoji(emoji, by: distanceDragged)
+                    }
+                } else {
+                    self.document.moveEmoji(emoji, by: distanceDragged)
+                }
             }
     }
 }

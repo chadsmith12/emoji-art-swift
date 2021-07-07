@@ -14,7 +14,7 @@ struct DocumentEmojiView: View {
     var body: some View {
         Text(content)
             .padding(4.0)
-            .border(isSelected ? Color.black : Color.clear)
+            .border(isSelected ? Color.blue : Color.clear, width: 3)
     }
 }
 
