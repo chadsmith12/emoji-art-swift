@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PalletChooser: View {
     @EnvironmentObject var store: PalletStore
-    @State private var choenPaletteIndex = 0
+    @SceneStorage("PalletChoose.chosenPaletteIndex") private var choenPaletteIndex = 0
     @State private var palletToEdit: Pallet?
     @State private var managing = false
     

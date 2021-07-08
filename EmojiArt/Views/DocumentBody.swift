@@ -9,9 +9,10 @@ import SwiftUI
 
 struct DocumentBody: View {
     @ObservedObject var document: EmojiArtDocument
-    @State private var steadyStateZoomScale: CGFloat = 1
-    @State private var steadyStatePanOffset = CGSize.zero
+    @SceneStorage("DocumentBody.steadyStateZoomScale") private var steadyStateZoomScale: CGFloat = 1
+    @SceneStorage("DocumentBody.steadyStatePanOffset") private var steadyStatePanOffset = CGSize.zero
     @State private var alertToShow: IdentifiableAlert?
+    @State private var autoZoom = false
     @GestureState private var gestureZoomScale: CGFloat = 1
     @GestureState private var gesturePanOffset = CGSize.zero
     @GestureState private var gestureEmojiOffset = CGSize.zero
@@ -67,7 +68,9 @@ struct DocumentBody: View {
                 }
             }
             .onReceive(document.$backgroundImage) { image in
-                zoomToFit(image: image, in: geometry.size)
+                if autoZoom {
+                    zoomToFit(image: image, in: geometry.size)
+                }
             }
         }
     }
@@ -93,7 +96,9 @@ struct DocumentBody: View {
         
         if !found {
             found = providers.loadObjects(ofType: UIImage.self) { image in
+                autoZoom = true
                 if let data = image.jpegData(compressionQuality: 1.0) {
+                    autoZoom = true
                     document.setBackground(.imageData(data))
                 }
             }
