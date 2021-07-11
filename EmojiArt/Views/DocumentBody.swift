@@ -29,12 +29,11 @@ struct DocumentBody: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                Color.white.overlay(
-                    OptionalImage(uiImage: document.backgroundImage)
-                        .scaleEffect(zoomScale)
-                        .position(Point(x: 0, y: 0).centerPoint(in: geometry.frame(in: .local), from: panOffset, zoomScale: zoomScale))
-                )
-                .gesture(doubleTapToZoom(in: geometry.size))
+                Color.white
+                OptionalImage(uiImage: document.backgroundImage)
+                    .scaleEffect(zoomScale)
+                    .position(Point(x: 0, y: 0).centerPoint(in: geometry.frame(in: .local), from: panOffset, zoomScale: zoomScale))
+                    .gesture(doubleTapToZoom(in: geometry.size))
                 if document.backgroundStatus == .fetching {
                     ProgressView()
                         .scaleEffect(2)
@@ -73,6 +72,33 @@ struct DocumentBody: View {
                     zoomToFit(image: image, in: geometry.size)
                 }
             }
+            .compactableToolbar {
+                AnimatedActionButton(title: "Paste", systemImage: "doc.on.clipboard") {
+                    pasteBackground()
+                }
+                if let undoManager = undoManager {
+                    if undoManager.canUndo {
+                        AnimatedActionButton(title: undoManager.undoActionName, systemImage: "arrow.uturn.backward") {
+                            undoManager.undo()
+                        }
+                    }
+                    if undoManager.canRedo {
+                        AnimatedActionButton(title: undoManager.redoActionName, systemImage: "arrow.uturn.forward") {
+                            undoManager.redo()
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private func pasteBackground() {
+        if let imageData = UIPasteboard.general.image?.jpegData(compressionQuality: 1.0) {
+            document.setBackground(.imageData(imageData), undoManager: undoManager)
+        } else if let url = UIPasteboard.general.url?.imageURL {
+            document.setBackground(.url(url), undoManager: undoManager)
+        } else {
+            alertToShow = IdentifiableAlert(title: "Paste Background", message: "There is no image currently on the pasteboard")
         }
     }
     

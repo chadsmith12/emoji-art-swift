@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PalletManager: View {
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var store: PalletStore
     @State private var editMode: EditMode = .inactive
     
@@ -31,6 +32,9 @@ struct PalletManager: View {
             }
             .navigationTitle("Manage Pallets")
             .navigationBarTitleDisplayMode(.inline)
+            .dismissable {
+                presentationMode.wrappedValue.dismiss()
+            }
             .toolbar {
                 EditButton()
             }

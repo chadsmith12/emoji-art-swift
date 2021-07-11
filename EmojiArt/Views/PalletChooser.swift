@@ -31,6 +31,9 @@ struct PalletChooser: View {
             .transition(RollTransition(insertionOffset: (x: 0, y: emojiFrontSize), removalOffset: (x: 0, y: -emojiFrontSize)).transition)
             .popover(item: $palletToEdit) { pallet in
                 PalletEditor(pallet: $store.pallets[pallet])
+                    .wrapInNavigationView {
+                        palletToEdit = nil
+                    }
             }
             .sheet(isPresented: $managing) {
                 PalletManager()
