@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C74F1419269A9AC8006D097A /* DocumentTypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74F1418269A9AC8006D097A /* DocumentTypeExtensions.swift */; };
 		C7EE434A267C4DC3000B44DE /* EmojiArtApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE4349267C4DC3000B44DE /* EmojiArtApp.swift */; };
 		C7EE434C267C4DC3000B44DE /* EmojiArtDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE434B267C4DC3000B44DE /* EmojiArtDocumentView.swift */; };
 		C7EE434E267C4DC5000B44DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7EE434D267C4DC5000B44DE /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C74F1418269A9AC8006D097A /* DocumentTypeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTypeExtensions.swift; sourceTree = "<group>"; };
 		C7EE4346267C4DC3000B44DE /* EmojiArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7EE4349267C4DC3000B44DE /* EmojiArtApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtApp.swift; sourceTree = "<group>"; };
 		C7EE434B267C4DC3000B44DE /* EmojiArtDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtDocumentView.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				C7EE4363267C57C9000B44DE /* UtilityExtensions.swift */,
 				C7EE436A267C66F0000B44DE /* PointExtensions.swift */,
 				C7EE436C267D8EDF000B44DE /* NSItemProviderExtensions.swift */,
+				C74F1418269A9AC8006D097A /* DocumentTypeExtensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				C7EE436B267C66F0000B44DE /* PointExtensions.swift in Sources */,
 				C7EE4367267C5CF0000B44DE /* ScrollingEmojisView.swift in Sources */,
 				C7EE438526844023000B44DE /* PalletManager.swift in Sources */,
+				C74F1419269A9AC8006D097A /* DocumentTypeExtensions.swift in Sources */,
 				C7EE438726858C92000B44DE /* IdentifiableAlert.swift in Sources */,
 				C7EE4364267C57C9000B44DE /* UtilityExtensions.swift in Sources */,
 				C7EE437A26818F4E000B44DE /* DefaultPallets.swift in Sources */,

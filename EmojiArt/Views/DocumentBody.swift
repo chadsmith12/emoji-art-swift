@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DocumentBody: View {
+    @Environment(\.undoManager) var undoManager
     @ObservedObject var document: EmojiArtDocument
     @SceneStorage("DocumentBody.steadyStateZoomScale") private var steadyStateZoomScale: CGFloat = 1
     @SceneStorage("DocumentBody.steadyStatePanOffset") private var steadyStatePanOffset = CGSize.zero
@@ -91,7 +92,7 @@ struct DocumentBody: View {
     
     private func onDropItems(providers: [NSItemProvider], at location: CGPoint, in geometry: GeometryProxy) -> Bool {
         var found = providers.loadObjects(ofType: URL.self)  { url in
-            document.setBackground(.url(url.imageURL))
+            document.setBackground(.url(url.imageURL), undoManager: undoManager)
         }
         
         if !found {
@@ -99,7 +100,7 @@ struct DocumentBody: View {
                 autoZoom = true
                 if let data = image.jpegData(compressionQuality: 1.0) {
                     autoZoom = true
-                    document.setBackground(.imageData(data))
+                    document.setBackground(.imageData(data), undoManager: undoManager)
                 }
             }
         }
@@ -110,7 +111,8 @@ struct DocumentBody: View {
                     document.addEmoji(
                         String(emoji),
                         at: Point(point: location, in: geometry.frame(in: .local), from: panOffset, zoomScale: zoomScale),
-                        size: CGFloat(EmojiArtModel.Emoji.defaultEmojiSize) / zoomScale)
+                        size: CGFloat(EmojiArtModel.Emoji.defaultEmojiSize) / zoomScale,
+                        undoManager: undoManager)
                 }
             }
         }
@@ -167,10 +169,10 @@ struct DocumentBody: View {
                 let distanceDragged = finalDragGestureValue.translation / self.zoomScale
                 if isSelected  {
                     for emoji in document.selectedEmojis {
-                        self.document.moveEmoji(emoji, by: distanceDragged)
+                        self.document.moveEmoji(emoji, by: distanceDragged, undoManager: undoManager)
                     }
                 } else {
-                    self.document.moveEmoji(emoji, by: distanceDragged)
+                    self.document.moveEmoji(emoji, by: distanceDragged, undoManager: undoManager)
                 }
             }
     }
