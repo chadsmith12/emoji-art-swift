@@ -10,6 +10,11 @@
 		C74F1419269A9AC8006D097A /* DocumentTypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74F1418269A9AC8006D097A /* DocumentTypeExtensions.swift */; };
 		C74F141B269AB173006D097A /* WrapInNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74F141A269AB173006D097A /* WrapInNavigationView.swift */; };
 		C74F141D269ABD39006D097A /* CompactableInContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74F141C269ABD39006D097A /* CompactableInContextMenu.swift */; };
+		C74F1420269BBE5F006D097A /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74F141F269BBE5F006D097A /* CameraViewController.swift */; };
+		C74F1422269BD651006D097A /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74F1421269BD651006D097A /* Camera.swift */; };
+		C74F1424269BD8A8006D097A /* BackgroundPickerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74F1423269BD8A8006D097A /* BackgroundPickerType.swift */; };
+		C74F1427269BE910006D097A /* PhotosLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74F1426269BE910006D097A /* PhotosLibraryViewController.swift */; };
+		C74F1429269BEC61006D097A /* PhotosLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74F1428269BEC61006D097A /* PhotosLibrary.swift */; };
 		C7EE434A267C4DC3000B44DE /* EmojiArtApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE4349267C4DC3000B44DE /* EmojiArtApp.swift */; };
 		C7EE434C267C4DC3000B44DE /* EmojiArtDocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EE434B267C4DC3000B44DE /* EmojiArtDocumentView.swift */; };
 		C7EE434E267C4DC5000B44DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7EE434D267C4DC5000B44DE /* Assets.xcassets */; };
@@ -41,6 +46,11 @@
 		C74F1418269A9AC8006D097A /* DocumentTypeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTypeExtensions.swift; sourceTree = "<group>"; };
 		C74F141A269AB173006D097A /* WrapInNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapInNavigationView.swift; sourceTree = "<group>"; };
 		C74F141C269ABD39006D097A /* CompactableInContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactableInContextMenu.swift; sourceTree = "<group>"; };
+		C74F141F269BBE5F006D097A /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		C74F1421269BD651006D097A /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		C74F1423269BD8A8006D097A /* BackgroundPickerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundPickerType.swift; sourceTree = "<group>"; };
+		C74F1426269BE910006D097A /* PhotosLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosLibraryViewController.swift; sourceTree = "<group>"; };
+		C74F1428269BEC61006D097A /* PhotosLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosLibrary.swift; sourceTree = "<group>"; };
 		C7EE4346267C4DC3000B44DE /* EmojiArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmojiArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7EE4349267C4DC3000B44DE /* EmojiArtApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtApp.swift; sourceTree = "<group>"; };
 		C7EE434B267C4DC3000B44DE /* EmojiArtDocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtDocumentView.swift; sourceTree = "<group>"; };
@@ -81,6 +91,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C74F141E269BBE38006D097A /* CameraView */ = {
+			isa = PBXGroup;
+			children = (
+				C74F141F269BBE5F006D097A /* CameraViewController.swift */,
+				C74F1421269BD651006D097A /* Camera.swift */,
+			);
+			path = CameraView;
+			sourceTree = "<group>";
+		};
+		C74F1425269BE8EB006D097A /* PhotosLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				C74F1426269BE910006D097A /* PhotosLibraryViewController.swift */,
+				C74F1428269BEC61006D097A /* PhotosLibrary.swift */,
+			);
+			path = PhotosLibrary;
+			sourceTree = "<group>";
+		};
 		C7EE433D267C4DC3000B44DE = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +158,7 @@
 				C7EE435B267C4EBE000B44DE /* Point.swift */,
 				C7EE435D267C52B3000B44DE /* EmojiArtModel.Background.swift */,
 				C7EE437626818ABC000B44DE /* Pallet.swift */,
+				C74F1423269BD8A8006D097A /* BackgroundPickerType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -160,6 +189,8 @@
 		C7EE4365267C5CD7000B44DE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C74F1425269BE8EB006D097A /* PhotosLibrary */,
+				C74F141E269BBE38006D097A /* CameraView */,
 				C7EE4366267C5CF0000B44DE /* ScrollingEmojisView.swift */,
 				C7EE4368267C5EDC000B44DE /* DocumentBody.swift */,
 				C7EE436E267EBA81000B44DE /* OptionalImage.swift */,
@@ -261,20 +292,25 @@
 				C7EE436D267D8EDF000B44DE /* NSItemProviderExtensions.swift in Sources */,
 				C7EE435C267C4EBE000B44DE /* Point.swift in Sources */,
 				C7EE4373267EF079000B44DE /* DocumentEmojiView.swift in Sources */,
+				C74F1424269BD8A8006D097A /* BackgroundPickerType.swift in Sources */,
 				C7EE4375268189B0000B44DE /* PalletStore.swift in Sources */,
 				C7EE4369267C5EDC000B44DE /* DocumentBody.swift in Sources */,
 				C7EE4371267EC3BF000B44DE /* EmojiArtDocument.BackgroundStatus.swift in Sources */,
+				C74F1427269BE910006D097A /* PhotosLibraryViewController.swift in Sources */,
 				C7EE436F267EBA81000B44DE /* OptionalImage.swift in Sources */,
 				C74F141D269ABD39006D097A /* CompactableInContextMenu.swift in Sources */,
 				C7EE437F2681B1E8000B44DE /* RollTransition.swift in Sources */,
 				C7EE437C2681A95D000B44DE /* PalletChooser.swift in Sources */,
 				C7EE4361267C5526000B44DE /* EmojiArtDocument.swift in Sources */,
+				C74F1429269BEC61006D097A /* PhotosLibrary.swift in Sources */,
 				C7EE43812682E831000B44DE /* AnimatedActionButton.swift in Sources */,
+				C74F1422269BD651006D097A /* Camera.swift in Sources */,
 				C7EE434C267C4DC3000B44DE /* EmojiArtDocumentView.swift in Sources */,
 				C7EE437726818ABC000B44DE /* Pallet.swift in Sources */,
 				C7EE436B267C66F0000B44DE /* PointExtensions.swift in Sources */,
 				C7EE4367267C5CF0000B44DE /* ScrollingEmojisView.swift in Sources */,
 				C74F141B269AB173006D097A /* WrapInNavigationView.swift in Sources */,
+				C74F1420269BBE5F006D097A /* CameraViewController.swift in Sources */,
 				C7EE438526844023000B44DE /* PalletManager.swift in Sources */,
 				C74F1419269A9AC8006D097A /* DocumentTypeExtensions.swift in Sources */,
 				C7EE438726858C92000B44DE /* IdentifiableAlert.swift in Sources */,

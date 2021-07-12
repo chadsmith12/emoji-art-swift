@@ -14,6 +14,7 @@ struct DocumentBody: View {
     @SceneStorage("DocumentBody.steadyStatePanOffset") private var steadyStatePanOffset = CGSize.zero
     @State private var alertToShow: IdentifiableAlert?
     @State private var autoZoom = false
+    @State private var backgroundPicker: BackgroundPickerType? = nil
     @GestureState private var gestureZoomScale: CGFloat = 1
     @GestureState private var gesturePanOffset = CGSize.zero
     @GestureState private var gestureEmojiOffset = CGSize.zero
@@ -76,6 +77,14 @@ struct DocumentBody: View {
                 AnimatedActionButton(title: "Paste", systemImage: "doc.on.clipboard") {
                     pasteBackground()
                 }
+                if CameraViewController.isAvailable {
+                    AnimatedActionButton(title: "Take Photo", systemImage: "camera") {
+                        backgroundPicker = .camera
+                    }
+                }
+                AnimatedActionButton(title: "Select Background", systemImage: "photo") {
+                    backgroundPicker = .library
+                }
                 if let undoManager = undoManager {
                     if undoManager.canUndo {
                         AnimatedActionButton(title: undoManager.undoActionName, systemImage: "arrow.uturn.backward") {
@@ -89,7 +98,26 @@ struct DocumentBody: View {
                     }
                 }
             }
+            .sheet(item: $backgroundPicker) { pickerType in
+                switch pickerType {
+                case .camera: Camera { image in
+                    handlePickedImage(image)
+                }
+                case .library: PhotosLibraryViewController { image in
+                    handlePickedImage(image)
+                }
+                }
+            }
         }
+    }
+    
+    private func handlePickedImage(_ image: UIImage?) {
+        autoZoom = true
+        if let imageData = image?.jpegData(compressionQuality: 1.0) {
+            document.setBackground(.imageData(imageData), undoManager: undoManager)
+        }
+        
+        backgroundPicker = nil
     }
     
     private func pasteBackground() {
